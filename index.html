@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atlanta Post</title>
+    <!-- Add Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Georgia', serif; /* Professional font */
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #a41e22;
+            color: white;
+            padding: 20px 0;
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for elegance */
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 3em;
+            font-weight: bold;
+            font-style: italic;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .header-border {
+            width: 100%;
+            height: 9px;
+            background-color: black;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+
+        /* Navigation Menu */
+        nav {
+            display: none;
+            background-color: #333;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 1;
+        }
+
+        nav a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #555;
+        }
+
+        .hamburger {
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            align-items: center;
+            padding-right: 20px;
+        }
+
+        .hamburger div {
+            width: 30px;
+            height: 3px;
+            background-color: white;
+        }
+
+        /* Toggle menu visibility */
+        .menu-open {
+            display: block;
+        }
+
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 20px auto;
+            max-width: 1200px;
+            justify-content: space-between;
+        }
+
+        .main-article {
+            flex: 2;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Article box shadow */
+            margin-bottom: 20px;
+        }
+
+        .main-article h1 {
+            font-size: 2.2em;
+            color: #a41e22;
+            margin-bottom: 15px;
+        }
+
+        .main-article p {
+            line-height: 1.6;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+
+        .sidebar {
+            flex: 1;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sidebar box shadow */
+        }
+
+        .article, .sidebar-item {
+            margin-bottom: 20px;
+        }
+
+        .article img, .sidebar-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        footer {
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center;
+            padding: 15px 0;
+            position: relative;
+            margin-top: 20px;
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: #f4f4f4;
+            color: #333;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            flex-direction: column;
+        }
+
+
+        .footer-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .footer-content a {
+            color: #333;
+            font-size: 20px;
+            margin-right: 15px;
+        }
+
+        .footer-content i {
+            font-size: 24px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .footer-links a {
+            color: #333;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .footer-banner {
+            width: 100%;
+            height: 9px;
+            background-color: black;
+            position: absolute;
+            top: 0px;
+            left: 0;
+        }
+
+    </style>
+</head>
+<body>
+       <header style="display: flex; align-items: center; justify-content: space-between; background-color: #a41e22; color: white; padding: 20px; position: relative;">
+        <img src="photos/logo.png" alt="Atlanta Post Logo" style="width: 120px; height: auto;">
+        <h1 style="margin: 0; font-size: 2.5em; font-weight: bold; font-style: italic; text-align: center; flex: 1;">Atlanta Post</h1>
+        <div style="cursor: pointer; margin-right: 20px;" onclick="toggleMenu()">
+            <div style="width: 30px; height: 3px; background-color: white; margin: 5px 0;"></div>
+            <div style="width: 30px; height: 3px; background-color: white; margin: 5px 0;"></div>
+            <div style="width: 30px; height: 3px; background-color: white; margin: 5px 0;"></div>
+        </div>
+        <input type="text" placeholder="Search..." style="padding: 8px; border-radius: 4px; border: none; margin-left: 10px; width: 150px;">
+        <div class="header-border"></div> <!-- Black border under the header -->
+    </header>
+
+    <nav id="menu">
+        <a href="#">Home</a>
+        <a href="#">News</a>
+        <a href="#">Sports</a>
+        <a href="#">Politics</a>
+        <a href="#">Entertainment</a>
+        <a href="#">Contact</a>
+    </nav>
+
+    <div class="main-content">
+        <div class="main-article">
+            <div class="article">
+               <div style="width: 100%; max-width: 800px; margin: 0 auto; overflow: hidden;">
+    <video autoplay muted style="width: 100%; height: 500px; object-fit: cover;">
+        <source src="videos/video1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+                <h1>How Going Viral Can Be Deadly</h1>
+                <p>The internet's power to propel ordinary individuals into the spotlight has brought fame and fortune to some, but for others, it has led to tragic outcomes. This week, the online community was shocked to learn about the untimely death of the "Chopped Chin Meme" guy.</p>
+                <p>Born out of a random online moment, "Chopped Chin", otherwise known as Angel Wiley, took the internet by storm this month, turning the young man behind it into an overnight sensation. But with virality came unexpected challenges: harassment, stalking, and even threats from people who couldn't separate online fame from reality.</p>
+                <p>Authorities in Wiley's hometown confirmed that he was fatally shot during what appeared to be a confrontation fueled by his viral status. "He never asked for this kind of attention," his family said in a statement. "The internet's obsession can sometimes be too much to handle."
+                Reports from eye witnesses have shed light unto two possible suspects, seen fleeing the area at around 8'oclock in evening, moments after shots rang out. While detectives have been following developing leads, there has been no arrests made at this time. </p>
+                <p>While millions laughed at the meme, few paused to consider the person behind it. Wiley's family hopes that those responsible will face justice soon, and that the community learns from the loss of their sons life. This tragedy highlights the darker side of going viral in a world where sudden fame can bring danger and even death.</p>
+                <p>As we continue to share and engage with viral content, let us remember the human beings behind the screen, may Angel Wiley rest in peace. Fame may be fleeting, but its consequences can be everlasting.</p>
+                <p> 
+                <a href="https://knowyourmeme.com/memes/chopped-chin" target="_blank" style="color: black; text-decoration: underline;">Click here to see meme origin</a>.
+                </p>
+
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <div class="sidebar-item">
+                <img src="photos/photo2.jpg" alt="Viral Impact">
+                <h4>Trending Now</h4>
+                <p>Los Angeles has been gripped by devastating wildfires that have scorched over 50,000 acres of land, leaving a trail of destruction in their wake. The fires, fueled by dry conditions and strong Santa Ana winds, have destroyed homes, forced thousands to evacuate, and left entire communities in despair.</p>
+            </div>
+            <div class="sidebar-item">
+                <img src="photos/photo3.jpg" alt="Social Media Stats">
+                <h3>Winter Storm Watch issued for North Georgia</h3>
+                <p>Governor Brian Kemp has urged residents to stay informed and exercise caution during the storm. He emphasized the importance of monitoring local forecasts and adhering to any advisories issued by authorities.</p>
+            </div>
+        </div>
+    </div>
+
+
+
+    <footer style="background-color: #333; color: #fff; padding: 40px 20px;">
+    <!-- Top Section: Links -->
+    <div class="footer-top" style="display: flex; flex-wrap: wrap; justify-content: space-between; max-width: 1200px; margin: 0 auto; border-bottom: 1px solid #555; padding-bottom: 20px;">
+    <div class="footer" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+        <div class="footer-logo" style="flex: 1; text-align: left;">
+            <img src="photos/logo.png" alt="Atlanta Post Logo" style="width: 150px;">
+        </div>
+        <div class="footer-links" style="flex: 3; display: flex; justify-content: space-between; flex-wrap: wrap;">
+            <ul style="list-style: none; padding: 0; margin: 0;">
+                <li style="margin-bottom: 10px;"><a href="#" style="color: white; text-decoration: none;">News</a></li>
+                <li style="margin-bottom: 10px;"><a href="#" style="color: white; text-decoration: none;">Politics</a></li>
+                <li style="margin-bottom: 10px;"><a href="#" style="color: white; text-decoration: none;">Sports</a></li>
+                <li style="margin-bottom: 10px;"><a href="#" style="color: white; text-decoration: none;">Entertainment</a></li>
+            </ul>
+            <ul style="list-style: none; padding: 0; margin: 0;">
+                <li style="margin-bottom: 10px;"><a href="#" style="color: white; text-decoration: none;">Contact Us</a></li>
+                <li style="margin-bottom: 10px;"><a href="#" style="color: white; text-decoration: none;">Advertise</a></li>
+                <li style="margin-bottom: 10px;"><a href="#" style="color: white; text-decoration: none;">Careers</a></li>
+                <li style="margin-bottom: 10px;"><a href="#" style="color: white; text-decoration: none;">Archives</a></li>
+            </ul>
+            <ul style="list-style: none; padding: 0; margin: 0;">
+                <li style="margin-bottom: 10px;"><a href="#" style="color: white; text-decoration: none;">Privacy Notice</a></li>
+                <li style="margin-bottom: 10px;"><a href="#" style="color: white; text-decoration: none;">Terms and Conditions</a></li>
+                <li style="margin-bottom: 10px;"><a href="#" style="color: white; text-decoration: none;">Do Not Sell My Info</a></li>
+                <li style="margin-bottom: 10px;"><a href="#" style="color: white; text-decoration: none;">Accessibility</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- New container for social media and copyright -->
+    <div class="footer-bottom" style="width: 100%; text-align: center; padding-top: 20px;">
+        <!-- Social media icons -->
+        
+        <!-- Copyright -->
+       
+    </div>
+</div>
+
+    <!-- Bottom Section: Social Media and Legal Info -->
+    <div class="footer-bottom" style="max-width: 1200px; margin: 20px auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; text-align: center;">
+        <div class="social-media" style="flex: 1; display: flex; justify-content: center; gap: 6px;">
+            <a href="#" style="color: white; text-decoration: none;"><i class="fab fa-facebook fa-2x"></i></a>
+            <a href="#" style="color: white; text-decoration: none;"><i class="fab fa-instagram fa-2x"></i></a>
+            <a href="#" style="color: white; text-decoration: none;"><i class="fab fa-x-twitter fa-2x"></i></a>
+            <a href="mailto:info@atlantapost.com" style="color: white; text-decoration: none;"><i class="fas fa-envelope fa-2x"></i></a>
+        </div>
+        <div class="footer-legal" style="flex: 2; margin-top: 20px;">
+            <p style="margin: 0; font-size: 0.9em; color: #bbb;">&copy; 2025 Atlanta Post. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('menu-open');
+        }
+    </script>
+</body>
+</html>
